@@ -1,7 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
+  {{- if .Values.service.fullnameOverride }}
+  name: {{ .Values.service.fullnameOverride }}
+  {{- else }}
   name: {{ include "helm-nginx-chart.fullname" . }}
+  {{- end }}
   labels:
     {{- include "helm-nginx-chart.labels" . | nindent 4 }}
 spec:

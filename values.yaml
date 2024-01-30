@@ -8,7 +8,7 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: stable
 
 imagePullSecrets: []
 nameOverride: ""
@@ -40,6 +40,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  fullnameOverride: "nginx-svc"
   type: ClusterIP
   port: 80
 
@@ -51,9 +52,7 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
+      paths: []
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
